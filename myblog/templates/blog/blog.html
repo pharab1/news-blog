@@ -1,0 +1,85 @@
+{% load static %}
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+	<title>Hat-News.kz</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all">
+
+	<link rel="shortcut icon" href="css/images/favicon.ico">
+
+</head>
+<body>
+<div class="shell">
+	<div class="border">
+
+
+
+		<div id="navigation">
+			<ul>
+			    <li><a href="/" class="active">Главная</a></li>
+			    <li><a href="/admin">Админ панель</a></li>
+
+			</ul>
+		</div>
+
+		<div id="main">
+			<div id="content" class="left">
+
+				<div class="projects">
+					<h3>Записи</h3>
+					{% for post in post_list %}
+					<div class="item">
+						<div class="image left">
+							<a href="#"><img src="{{ post.img.url }}" width="200px"></a>
+						</div>
+						<div class="text left">
+							<h4><a href="{{ post.id }}"> {{ post.title }}</a></h4>
+							<p>{{ post.description }}</p>
+							<p><strong>Автор:</strong>  {{ post.author }}</p>
+						</div>
+						<div class="cl">&nbsp;</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+
+			<div class="cl">&nbsp;</div>
+		</div>
+
+
+	</div>
+
+	<div id="footer">
+		<p class="copy right">Copyright ©  2023 </p>
+	</div>
+</div>
+
+</body>
+<script type="text/javascript">
+
+    var logger = {
+        log: function (message) {
+            console.log(message);  // Выводим сообщение в консоль браузера
+            // Также можно отправить сообщение на сервер или использовать другие методы логирования
+        }
+    };
+
+    // Пример использования логирования
+    logger.log("Страница загружена успешно.");
+</script>
+
+<!-- Логирование на стороне сервера -->
+<script type="text/javascript">
+    // Отправляем запрос на сервер для логирования
+    fetch('/log/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            level: 'INFO',
+            message: 'Страница загружена успешно.',
+        }),
+    });
+</script>
+</html>
